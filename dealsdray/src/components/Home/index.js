@@ -2,14 +2,14 @@ import {Link, Navigate} from 'react-router-dom';
 import './index.css'
 import Header from '../Header'
 import { useContext, useEffect } from 'react';
-import userContext from '../../Context/userContext';
+import UserContext from '../../Context/userContext';
 
 const Home = () => {
-    const {user}=useContext(userContext);
-    useEffect((user)=>{
+    const {user}=useContext(UserContext);
+    useEffect(()=>{
         console.log(user)
-    },[])
-    if(!user || user=={}){
+    },[user])
+    if(!user || user && !user.length){
         console.log(user)
         return <Navigate replace to='/login'/>
     }

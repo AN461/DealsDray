@@ -42,7 +42,7 @@ function LoginForm() {
         }
     };
     
-    if(user!={}){
+    if(user && user.length!=0){
         return <Navigate to='/'/>
     }
     return (
