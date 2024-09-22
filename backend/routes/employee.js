@@ -1,10 +1,11 @@
 
 const express = require('express');
 const router = express.Router();
-const Employee=require('../models/employee')
+const Employee=require('../models/employee');
+const auth = require('../middleware/auth');
 
 // Create Employee
-router.post('/', async (req, res) => {
+router.post('/',auth,async (req, res) => {
     const { name, email, mobile, designation, gender, courses, image } = req.body;
     console.log(req.body);
     const newEmployee = new Employee({ name, email, mobile, designation, gender, courses, image });
