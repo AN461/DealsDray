@@ -24,7 +24,7 @@ function LoginForm() {
         try {
             const response = await axios.post('http://localhost:5000/api/managers/login',loginData)
             localStorage.setItem("token",response.data.userId);
-            // setUser(JSON.parse(atob(response.data.userId.split('.')[1])))
+            setUser(JSON.parse(atob(response.data.userId.split('.')[1])));
             navigate('/');
             
             console.log(response)

@@ -18,13 +18,7 @@ const App=()=>{
     return{}
   },[])
 
-  useEffect(()=>{
-    if(localStorage.getItem('token')){
-      const token = localStorage.getItem('token')
-      setUser(JSON.parse(atob(token.split('.')[1])));
-    } 
-    console.log(user)
-  },[])
+  
   return(
     <>
       <UserContext.Provider value={{user,setUser}}>

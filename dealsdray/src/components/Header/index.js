@@ -5,6 +5,7 @@ import UserContext from '../../Context/userContext';
 const Header =() =>{
     const {user,setUser}= useContext(UserContext)
     const onclickLogout=()=>{
+        localStorage.removeItem('token');
         setUser({})
     }
     return(
