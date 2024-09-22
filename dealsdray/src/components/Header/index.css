@@ -1,0 +1,31 @@
+li{
+    list-style-type: none;
+}
+.nav-container{
+    background-color: rgb(171, 175, 176);
+    padding: 1px;
+}
+.header-list{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+
+}
+.logout-button{
+    background-color: blue;
+    border-width: 0px;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 10px;
+    cursor: pointer;
+
+}
+.home-route{
+    text-decoration: none;
+    color:rgb(79, 81, 83);
+}
+.employeelist-route{
+    text-decoration: none;
+    color:rgb(79, 81, 83);
+}
