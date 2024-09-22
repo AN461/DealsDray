@@ -1,7 +1,9 @@
 import './index.css'
 import axios from 'axios';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import Header from '../Header';
+import { Navigate } from 'react-router-dom';
+import UserContext from '../../Context/userContext';
 
 const CreateEmployee = () => {
     const [formData, setFormData] = useState({
@@ -13,6 +15,8 @@ const CreateEmployee = () => {
         courses: [],
         image: null
     });
+
+    const {user} = useContext(UserContext);
 
     const handleChange = (e) => {
         const { id, value, type, checked } = e.target;
@@ -47,6 +51,10 @@ const CreateEmployee = () => {
         
         // You can now use formData or store it in a list/array or send it to a server
     };
+
+    if(!user || user&&!user.length){
+        return <Navigate replace to='/login'/>
+    }
 
     return (
         <>

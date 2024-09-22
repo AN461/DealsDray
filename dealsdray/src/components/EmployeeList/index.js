@@ -1,12 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './index.css';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import Header from '../Header';
+import UserContext from '../../Context/userContext';
 
 const EmployeeList = () => {
     const [employees, setEmployees] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const {user} = useContext(UserContext);
 
     // Fetch data from the backend API
     useEffect(() => {
@@ -36,6 +38,9 @@ const EmployeeList = () => {
         return <div>Error: {error}</div>;
     }
 
+    if(!user || user&&!user.length){
+        return <Navigate replace to='/login'/>
+    }
     return (
         <>
             <Header />

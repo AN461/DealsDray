@@ -8,11 +8,11 @@ const Home = () => {
     const {user} = useContext(userContext);
 
     useEffect((user)=>{
-        console.log(user)
+        console.log("from home:",user)
     },[user])
 
 
-    if(!user || user&&!user.length){
+    if(!user || user && !user.username){
         return <Navigate replace to='/login'/>
     }
 

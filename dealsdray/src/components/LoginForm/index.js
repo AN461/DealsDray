@@ -11,11 +11,10 @@ function LoginForm() {
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const navigate = useNavigate();
-    const {user}=useContext(userContext);
+    const {user,setUser}=useContext(userContext);
 
-    useEffect(()=>{
-        console.log(user)
-    },[user])
+
+    
     
     const handleSubmit = async (event) => {
         event.preventDefault(); // Prevent page refresh
@@ -23,30 +22,19 @@ function LoginForm() {
         const loginData = { username, password };
 
         try {
-            const response = await axios.post('http://localhost:5000/login', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(loginData),
-            });
-
-            const data = await response.json();
-            console.log(data)
-            if (response.ok) {
-                // If login is successful, navigate to home page
-                navigate('/');
-            } else {
-                // Handle error (e.g., wrong credentials)
-                setError(data.message);
-            }
+            const response = await axios.post('http://localhost:5000/api/managers/login',loginData)
+            localStorage.setItem("token",response.data.userId);
+            // setUser(JSON.parse(atob(response.data.userId.split('.')[1])))
+            navigate('/');
+            
+            console.log(response)
         } catch (error) {
             console.error('Error logging in:', error);
             setError('Something went wrong. Please try again.');
         }
     };
     
-    if(user&&user.length){
+    if(user&&user.username){
         return <Navigate to='/'/>
     }
     return (
