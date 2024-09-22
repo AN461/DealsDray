@@ -2,6 +2,11 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+
+const managerRouter = require('./routes/manager')
+const employeeRouter = require('./routes/employee');
+const { errorMiddleware } = require('./middleware/error');
+
 const app = express();
 const PORT = process.env.PORT || 5000;
 
@@ -9,6 +14,8 @@ const PORT = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+// app.use(errorMiddleware)
+
 // MongoDB connection
 mongoose.connect('mongodb+srv://gollaanjimath123:1234567890@cluster0.fvgb7ow.mongodb.net/deals', {
     useNewUrlParser: true,

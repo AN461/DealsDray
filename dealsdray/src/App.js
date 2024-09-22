@@ -11,12 +11,16 @@ import { useEffect, useState } from "react";
 
 const App=()=>{
   const [user, setUser] = useState(()=>{
-    if(localStorage.getItem('token')){
-      const token = localStorage.getItem('token')
-      return JSON.parse(atob(token.split('.')[1]));
-    } 
-    return{}
-  },[])
+    const token = localStorage.getItem('token')
+    if(token){
+      const base64Url = token.split('.')[1]; // Get the payload part of the JWT
+      const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/'); // Fix URL encoding issues
+      const decodedPayload = JSON.parse(atob(base64));
+      return decodedPayload;
+      // return JSON.parse(atob(token.split('.')[1]));
+    }
+    return{}
+  },[])
 
   
   return(
