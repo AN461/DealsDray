@@ -1,7 +1,7 @@
 import {Link} from 'react-router-dom'
 import axios from 'axios'
 import './index.css';
-import { useState,useContext } from 'react';
+import { useState,useContext, useEffect } from 'react';
 import { useNavigate,Navigate } from 'react-router-dom';
 import userContext from '../../Context/userContext';
 
@@ -12,6 +12,10 @@ function LoginForm() {
     const [error, setError] = useState('');
     const navigate = useNavigate();
     const {user}=useContext(userContext);
+
+    useEffect(()=>{
+        console.log(user)
+    },[user])
     
     const handleSubmit = async (event) => {
         event.preventDefault(); // Prevent page refresh
@@ -42,7 +46,7 @@ function LoginForm() {
         }
     };
     
-    if(user!={}){
+    if(user&&user.length){
         return <Navigate to='/'/>
     }
     return (

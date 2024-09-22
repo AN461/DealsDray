@@ -6,7 +6,7 @@ import Dashboard from './components/Home';
 import CreateEmployee  from "./components/CreateEmployee";
 import EmployeeList from './components/EmployeeList';
 import RegistrationForm from "./components/RegistrationForm";
-import userContext from "./Context/userContext";
+import UserContext from "./Context/userContext";
 import { useState } from "react";
 
 const App=()=>{
@@ -14,17 +14,17 @@ const App=()=>{
   
   return(
     <>
-      <userContext.Provider value={{user,setUser}}>
+      <UserContext.Provider value={{user,setUser}}>
         <BrowserRouter>
           <Routes>
-            <Route exact element={<LoginForm/>} path='/login'></Route>
-            <Route exact element={<RegistrationForm/>} path="/register"></Route>
-            <Route exact element={<Dashboard/>} path='/'></Route>
-            <Route exact element={<CreateEmployee/>} path='/createemployee'></Route>
-            <Route exact element={<EmployeeList/>} path='/employeelist'></Route>
+            <Route element={<LoginForm/>} path='/login'></Route>
+            <Route element={<RegistrationForm/>} path="/register"></Route>
+            <Route element={<Dashboard/>} path='/'></Route>
+            <Route element={<CreateEmployee/>} path='/createemployee'></Route>
+            <Route element={<EmployeeList/>} path='/employeelist'></Route>
           </Routes>
         </BrowserRouter>
-      </userContext.Provider>
+      </UserContext.Provider>
         
     </>
   );
